@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react'
-import 'styles/globals.scss'
+import '@/styles/globals.scss'
+import Nav from '@/components/Nav'
+import Provider from '@/components/Provider'
 
 export const metadata = {
     title: 'Promptopia',
@@ -15,6 +17,7 @@ const RootLayout = ({ children }:PropsWithChildren) => {
             </div>
 
             <main className="app">
+                <Nav />
                 {children}
             </main>
         </body>
