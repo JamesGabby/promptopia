@@ -22,7 +22,29 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
                     required
                 />
             </label>
-
+            <label>
+                <span className="font-satoshi font-semibold text-base text-gray-700">
+                    Tag{' '}
+                    <span className="font-normal">(#product, #webdev, #idea)</span>
+                </span>
+                <input 
+                    className="form_input"
+                    value={post.tag}
+                    onChange={(e) => setPost({ ...post, tag: e.target.value })}
+                    placeholder="#tag"
+                    required
+                />
+            </label>
+            <div className="flex-end mx-3 mb-5 gap-4">
+                <Link href="/" className="text-gray-500 text-sm"></Link>
+                <button 
+                    className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+                    type="submit"
+                    disabled={submitting}
+                >
+                    {submitting ? `${type}...` : type}
+                </button>
+            </div>
         </form>
     </section>
   )
