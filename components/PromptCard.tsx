@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const PromptCard = () => {
+export const PromptCard = ({ prompt }) => {
   return (
-    <div>PromptCard</div>
+    <h1>{prompt}</h1>
   )
 }
 
