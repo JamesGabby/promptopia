@@ -20,7 +20,6 @@ const handler = NextAuth({
     
             return session
         },
-    
         async signIn({ profile }) {
             try {
                 await connectionToDB()
