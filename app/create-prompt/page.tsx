@@ -14,12 +14,12 @@ const CreatePrompt = () => {
         tag: ''
     })
 
-    const createPrompt = async (e: MouseEvent) => {
-        e.preventDefault()
+    const createPrompt = async (event: MouseEvent) => {
+        event.preventDefault()
         setSubmitting(true)
 
         try {
-            const res = await fetch('/api/prompt/new', {
+            const response = await fetch('/api/prompt/new', {
                 method: 'POST',
                 body: JSON.stringify({
                     prompt: post.prompt,
@@ -28,7 +28,7 @@ const CreatePrompt = () => {
                 })
             })
 
-            if (res.ok) {
+            if (response.ok) {
                 router.push('/')
             }
         } catch (error) {
