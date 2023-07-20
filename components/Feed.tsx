@@ -11,6 +11,8 @@ const PromptCardList = ({ data, handleTagClick }) => {
                     key={prompt._id}
                     prompt={prompt}
                     handleTagClick={handleTagClick}
+                    handleEdit={[]}
+                    handleDelete={[]}
                 />
             ))}
         </div>
@@ -21,8 +23,8 @@ const Feed = () => {
     const [searchText, setSearchText] = useState('')
     const [prompts, setPrompts] = useState([])
 
-    const handleSearchChange = (e) => {
-
+    const handleSearchChange = (event) => {
+        setSearchText(event.target.value)
     }
 
     useEffect(() => {
@@ -53,6 +55,8 @@ const Feed = () => {
                 data={prompts}
                 handleTagClick={() => {}}
             />
+
+            {searchText}
         </section>
     )
 }
