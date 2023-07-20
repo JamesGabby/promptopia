@@ -41,9 +41,8 @@ const Feed = () => {
     return (
         <section className="feed">
             <form className="relative w-full flex-center">
-                <input 
+                <input className="search_input peer"
                     type="text" 
-                    className="search_input peer"
                     placeholder='Search for a tag or username'
                     value={searchText}
                     onChange={handleSearchChange}
