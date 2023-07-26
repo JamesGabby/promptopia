@@ -11,14 +11,14 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchPrompts = async () => {
-        const response = await fetch(`/api/users/${session?.user.id}/prompts`)
-        const data = await response.json()
+      const response = await fetch(`/api/users/${session?.user.id}/prompts`)
+      const data = await response.json()
 
-        setPrompts(data)
+      setPrompts(data)
     }
 
-    fetchPrompts()
-}, [])
+    if (session?.user.id) fetchPrompts()
+  }, [])
 
   const handleEdit = () => {
 
@@ -32,7 +32,7 @@ const MyProfile = () => {
     <Profile
       name="My"
       desc="Welcome to your personalised profile page"
-      data={[]}
+      data={prompts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
     />
