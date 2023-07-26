@@ -11,8 +11,6 @@ const PromptCardList = ({ data, handleTagClick }) => {
                     key={prompt._id}
                     prompt={prompt}
                     handleTagClick={handleTagClick}
-                    handleEdit={[]}
-                    handleDelete={[]}
                 />
             ))}
         </div>
