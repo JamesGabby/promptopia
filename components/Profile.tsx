@@ -10,12 +10,13 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
       <p className="desc text-left">{desc}</p>
 
       <div className="prompt_layout mt-10">
-        {data.map((prompt) => (
+        {data.map((prompt: { _id: React.Key | null | undefined }) => (
           <PromptCard
             key={prompt._id}
             prompt={prompt}
             handleEdit={() => handleEdit && handleEdit(prompt)}
-            handleDelete={() => handleDelete && handleDelete(prompt)}
+            handleDelete={() => handleDelete && handleDelete(prompt)} 
+            handleTagClick={undefined}          
           />
         ))}
       </div>
