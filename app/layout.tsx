@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react'
 import '@/styles/globals.scss'
 import Nav from '@/components/Nav'
 import Provider from '@/components/Provider'
+import Head from 'next/head'
 
 export const metadata = {
     title: 'Promptopia',
@@ -11,6 +12,9 @@ export const metadata = {
 const RootLayout = ({ children }:PropsWithChildren) => {
   return (
     <html lang="en">
+        <Head>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+        </Head>
         <body>
             <Provider>
                 <div className="main">
