@@ -21,7 +21,8 @@ export const PATCH = async (request, { params }) => {
     try {
         await connectionToDB()
 
-        const existingPrompt = Prompt.findById(params.id)
+        const existingPrompt = Prompt.findById(params._id)
+        console.log(existingPrompt.prompt);
 
         if (!existingPrompt) return new Response("Prompt not found", { status: 404 })
 
@@ -32,6 +33,7 @@ export const PATCH = async (request, { params }) => {
 
         return new Response(JSON.stringify(existingPrompt), { status: 200 })
     } catch (error) {
+        console.log(error)
         return new Response("Failed to fetch prompt", { status: 500 })
     }
 }

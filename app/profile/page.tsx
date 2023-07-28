@@ -6,37 +6,38 @@ import { useRouter } from 'next/navigation'
 import Profile from '@/components/Profile'
 
 const MyProfile = () => {
-  const { data: session } = useSession()
-  const [prompts, setPrompts] = useState([])
+    const { data: session } = useSession()
+    const router = useRouter()
+    const [prompts, setPrompts] = useState([])
 
-  useEffect(() => {
-    const fetchPrompts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/prompts`)
-      const data = await response.json()
+    useEffect(() => {
+        const fetchPrompts = async () => {
+            const response = await fetch(`/api/users/${session?.user.id}/prompts`)
+            const data = await response.json()
 
-      setPrompts(data)
+            setPrompts(data)
+        }
+
+        if (session?.user.id) fetchPrompts()
+    }, [])
+
+    const handleEdit = (prompt) => {
+		router.push(`/update-prompt?id=${prompt._id}`)
     }
 
-    if (session?.user.id) fetchPrompts()
-  }, [])
+    const handleDelete = async () => {
 
-  const handleEdit = () => {
+    }
 
-  }
-
-  const handleDelete = async () => {
-
-  }
-
-  return (
-    <Profile
-      name="My"
-      desc="Welcome to your personalised profile page."
-      data={prompts}
-      handleEdit={handleEdit}
-      handleDelete={handleDelete}
-    />
-  )
+    return (
+        <Profile
+            name="My"
+            desc="Welcome to your personalised profile page."
+            data={prompts}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+        />
+    )
 }
 
 export default MyProfile
