@@ -36,6 +36,7 @@ const Feed = () => {
 
             <PromptCardList
                 data={prompts}
+                query={searchText}
                 handleTagClick={() => {}}
             />
 
