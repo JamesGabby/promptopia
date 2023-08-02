@@ -8,7 +8,15 @@ const Feed = () => {
     const [prompts, setPrompts] = useState([])
 
     const handleSearchChange = (event) => {
-        setSearchText(event.target.value)
+        setSearchText(event.target.value.toLowerCase())
+    }
+
+    const search = (data) => {
+        return data.filter((item) => 
+            item.prompt.toLowerCase().includes(searchText) ||
+            item.tag.toLowerCase().includes(searchText) ||
+            item.creator.username.toLowerCase().includes(searchText)
+        )
     }
 
     useEffect(() => {
@@ -35,8 +43,7 @@ const Feed = () => {
             </form>
 
             <PromptCardList
-                data={prompts}
-                query={searchText}
+                data={search(prompts)}
                 handleTagClick={() => {}}
             />
 

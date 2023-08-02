@@ -1,9 +1,9 @@
 import PromptCard from './PromptCard'
 
-const PromptCardList = ({ data, handleTagClick, query }) => {
+const PromptCardList = ({ data, handleTagClick }) => {
     return (
         <div className="prompt_layout mt-16">
-            {data.filter(d => d.prompt.toLowerCase().includes(query)).map((prompt) => (
+            {data.map((prompt) => (
                 <PromptCard
                     key={prompt._id}
                     prompt={prompt}
