@@ -11,6 +11,10 @@ const Feed = () => {
         setSearchText(event.target.value.toLowerCase())
     }
 
+    const handleTagClick = (tag) => {
+        setSearchText(tag)
+    }
+
     const search = (data) => {
         return data.filter((item) => 
             item.prompt.toLowerCase().includes(searchText) ||
@@ -44,10 +48,8 @@ const Feed = () => {
 
             <PromptCardList
                 data={search(prompts)}
-                handleTagClick={() => {}}
+                handleTagClick={handleTagClick}
             />
-
-            {searchText}
         </section>
     )
 }

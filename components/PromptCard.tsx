@@ -10,12 +10,15 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
     const pathName = usePathname()
     const router = useRouter()
     const [copied, setCopied] = useState('')
+    const tagArr = prompt.tag.replace(/#| /g, '').split(',')
 
     const handleCopy = () => {
         setCopied(prompt.prompt)
         navigator.clipboard.writeText(prompt.prompt)
         setTimeout(() => setCopied(''), 3000)
     }
+
+    console.log(prompt.creator?.image);
 
     return (
         <div className='prompt_card'>
@@ -25,7 +28,7 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
                     onClick={() => {}}
                 >
                     <Image
-                        src={prompt.creator.image}
+                        src={prompt.creator?.image}
                         alt='user_image'
                         width={40}
                         height={40}
@@ -34,10 +37,10 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
 
                     <div className='flex flex-col'>
                         <h3 className='font-satoshi font-semibold text-gray-900'>
-                            {prompt.creator.username}
+                            {prompt.creator?.username}
                         </h3>
                         <p className='font-inter text-sm text-gray-500'>
-                            {prompt.creator.email}
+                            {prompt.creator?.email}
                         </p>
                     </div>
                 </div>
@@ -57,14 +60,17 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
             </div>
 
             <p className='my-4 font-satoshi text-sm text-gray-700'>{prompt.prompt}</p>
-            <p
-                className='font-inter text-sm blue_gradient cursor-pointer'
-                onClick={() => handleTagClick && handleTagClick(prompt.tag)}
-            >
-                {prompt.tag}
-            </p>
-
-            {session?.user.id === prompt.creator._id && pathName === '/profile' && (
+            {tagArr.map(tag => (
+                <p
+                    className='font-inter text-sm blue_gradient cursor-pointer flex'
+                    onClick={() => handleTagClick && handleTagClick(tag)}
+                >
+                    
+                    #{tag}
+                    
+                </p>
+            ))}
+            {session?.user.id === prompt.creator?._id && pathName === '/profile' && (
                 <div className='mt-5 flex-center gap-4 border-t border-gray-100 pt-3'>
                     <p className="font-inter text-sm green_gradient cursor-pointer" onClick={handleEdit}>
                         Edit
