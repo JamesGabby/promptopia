@@ -62,7 +62,7 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
             <p className='my-4 font-satoshi text-sm text-gray-700'>{prompt.prompt}</p>
             {tagArr.map(tag => (
                 <p
-                    className='font-inter text-sm blue_gradient cursor-pointer flex'
+                    className='font-inter text-sm blue_gradient cursor-pointer inline-block mr-2'
                     onClick={() => handleTagClick && handleTagClick(tag)}
                 >
                     
