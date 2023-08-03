@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { MouseEventHandler, useState } from 'react'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 
-const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
+
+const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prompt: any, handleTagClick: MouseEventHandler, handleEdit: MouseEventHandler, handleDelete: MouseEventHandler }) => {
     const { data: session } = useSession()
     const pathName = usePathname()
     const router = useRouter()
@@ -60,14 +61,12 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }) => {
             </div>
 
             <p className='my-4 font-satoshi text-sm text-gray-700'>{prompt.prompt}</p>
-            {tagArr.map(tag => (
+            {tagArr.map((tag: String) => (
                 <p
                     className='font-inter text-sm blue_gradient cursor-pointer inline-block mr-2'
                     onClick={() => handleTagClick && handleTagClick(tag)}
                 >
-                    
                     #{tag}
-                    
                 </p>
             ))}
             {session?.user.id === prompt.creator?._id && pathName === '/profile' && (
