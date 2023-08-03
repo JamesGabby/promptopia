@@ -5,8 +5,13 @@ import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 
+type Prompt = {
+    prompt: String
+    tag: String
+}
 
-const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prompt: any, handleTagClick: MouseEventHandler, handleEdit: MouseEventHandler, handleDelete: MouseEventHandler }) => {
+
+const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prompt: Prompt, handleTagClick: MouseEventHandler, handleEdit: MouseEventHandler, handleDelete: MouseEventHandler }) => {
     const { data: session } = useSession()
     const pathName = usePathname()
     const router = useRouter()
