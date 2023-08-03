@@ -10,7 +10,6 @@ type Prompt = {
     tag: String
 }
 
-
 const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prompt: Prompt, handleTagClick: MouseEventHandler, handleEdit: MouseEventHandler, handleDelete: MouseEventHandler }) => {
     const { data: session } = useSession()
     const pathName = usePathname()
