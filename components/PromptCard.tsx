@@ -6,8 +6,14 @@ import { useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 
 type Prompt = {
-    prompt: String
-    tag: String
+    prompt: string
+    tag: string
+    creator: {
+        image: string
+        username: string
+        email: string
+        _id: string
+    }
 }
 
 const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prompt: Prompt, handleTagClick: MouseEventHandler, handleEdit: MouseEventHandler, handleDelete: MouseEventHandler }) => {
@@ -23,12 +29,16 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prom
         setTimeout(() => setCopied(''), 3000)
     }
 
+    const handleProfileClick = (user) => {
+		router.push(`/profile/${user._id}?username=${user.username}`)
+    }
+
     return (
         <div className='prompt_card'>
             <div className='flex justify-between items-start gap-5'>
                 <div
                     className='flex-1 flex justify-start items-center gap-3 cursor-pointer'
-                    onClick={() => {}}
+                    onClick={() => handleProfileClick(prompt.creator)}
                 >
                     <Image
                         src={prompt.creator?.image}
@@ -63,7 +73,7 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete }: { prom
             </div>
 
             <p className='my-4 font-satoshi text-sm text-gray-700'>{prompt.prompt}</p>
-            {tagArr.map((tag: String) => (
+            {tagArr.map((tag: string) => (
                 <p
                     className='font-inter text-sm blue_gradient cursor-pointer inline-block mr-2'
                     onClick={() => handleTagClick && handleTagClick(tag)}
